@@ -193,6 +193,8 @@ public interface TextAroundWord {
     // Process LinkedList to write messages in files. Param Mode define how function that creates message will work
     private static int processLinkedList(LinkedList<messageCharacteristics> wordsInRadius, File resDirectory,
                                           int radius, String key, int keyOccur, boolean isEnd, boolean mode){
+        if(mode && radius<15) //set default value, based on average length of sentences in english
+            radius = 15;
         ArrayList<Integer> keysPositionsInList = keysPositionsInList(wordsInRadius,key); // Keys positions in List
         if(keysPositionsInList.isEmpty())
             deleteFurtherThanLeftRadius(wordsInRadius, radius,wordsInRadius.size()-1);
